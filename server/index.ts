@@ -48,15 +48,15 @@ app.post('/process', async (req: Request, res: Response) => {
 
     if (outputFormat === 'png') {
       await sharpInstance
-        .png({ quality: 50 }) 
+        .png({ quality: 80 })
         .toFile(outputPath);
     } else {
       await sharpInstance
-        .jpeg({ quality: 50 }) 
+        .jpeg({ quality: 80 })
         .toFile(outputPath);
     }
 
-    res.sendFile(outputPath);
+    res.json({ processedFilename: `${filename}_processed.${outputFormat}` });
   } catch (error) {
     console.error('Error processing image:', error);
     res.status(500).send('Error processing image');

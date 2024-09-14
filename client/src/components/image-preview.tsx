@@ -67,7 +67,7 @@ const ImageUploadAndPreview: React.FC = () => {
   };
 
   return (
-    <Card className="w-full max-w-3xl mx-auto mt-5 min-h-[500px]">
+    <Card className="w-full max-w-xl mx-auto mt-5 min-h-xl">
       <CardContent className="p-6">
         <AnimatePresence mode="wait">
           {loading ? (
@@ -82,7 +82,7 @@ const ImageUploadAndPreview: React.FC = () => {
               <img
                 src={localImage ?? image ?? ''}
                 alt="Preview"
-                className="object-cover w-full h-full rounded-md filter blur-md"
+                className="object-contain w-full h-[200px] rounded-md filter blur-md"
               />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-16 h-16 border-t-4 border-blue-500 rounded-full animate-spin"></div>
@@ -111,7 +111,7 @@ const ImageUploadAndPreview: React.FC = () => {
               transition={{ duration: 0.5 }}
               className="relative"
             >
-              <img src={image} alt="Preview" className="w-full h-auto rounded-md" />
+              <img src={image} alt="Preview" className="object-contain w-full h-full rounded-md" />
               <Button
                 variant="destructive"
                 size="icon"
