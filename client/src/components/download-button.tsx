@@ -13,20 +13,18 @@ export const DownloadButton: React.FC = () => {
     if (filename && format) {
       setIsProcessing(true);
       try {
-        // First, process the image
+        // Process the image
         const processResponse = await axios.post('http://localhost:3000/process', {
           filename,
           brightness,
           contrast,
           saturation,
-          rotation,
-          format
+          rotation
         });
 
-        const { processedFilename } = processResponse.data;
-
-        // Then, download the processed image
-        const downloadResponse = await axios.get(`http://localhost:3000/download/${processedFilename}`, { responseType: 'blob' });
+        // Download the high-quality processed image in the selected format
+        const downloadFilename = format === 'png' ? processResponse.data.pngFilename : processResponse.data.jpegFilename;
+        const downloadResponse = await axios.get(`http://localhost:3000/download/${downloadFilename}`, { responseType: 'blob' });
         const url = window.URL.createObjectURL(new Blob([downloadResponse.data]));
         const link = document.createElement('a');
         link.href = url;
