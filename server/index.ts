@@ -79,10 +79,10 @@ app.post('/upload', upload.single('image'), (req: Request, res: Response) => {
 //the image in the flow to update all params at one.
 app.post('/process', [
   body('filename').notEmpty().withMessage('Filename is required'),
-  body('brightness').isFloat({ min: 0.5, max: 1.5 }).withMessage('Brightness must be between 0 and 2'),
-  body('contrast').isFloat({ min: 0.5, max: 1.5 }).withMessage('Contrast must be between 0 and 2'),
-  body('saturation').isFloat({ min: 0.5, max: 1.5 }).withMessage('Saturation must be between 0 and 2'),
-  body('rotation').isInt({ min: 0, max: 360 }).withMessage('Rotation must be between 0 and 360'),
+  body('brightness').isFloat({ min: 0, max: 2 }).withMessage('Brightness must be between 0 and 2'),
+  body('contrast').isFloat({ min: 0, max: 2 }).withMessage('Contrast must be between 0 and 2'),
+  body('saturation').isFloat({ min: 0, max: 2 }).withMessage('Saturation must be between 0 and 2'),
+  body('rotation').isFloat({ min: 0, max: 360 }).withMessage('Rotation must be between 0 and 360'),
 ], async (req: Request, res: Response) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
